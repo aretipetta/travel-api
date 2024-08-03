@@ -1,0 +1,22 @@
+server:
+  port: 8082
+
+spring:
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+  jpa:
+    hibernate:
+      ddl-auto: none
+    database: mysql
+  datasource:
+    url: jdbc:mysql://localhost:3306/travel
+    schemas: travel
+    username: root
+    password: root
+    driver-class-name: org.mysql.jdbc.Driver
+
+logging:
+  level:
+    root: DEBUG
+    org.springframework: DEBUG

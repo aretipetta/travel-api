@@ -1,16 +1,12 @@
-package com.ap.travel_api.web.request;
+package com.ap.travel_api.web.resource;
 
-import lombok.Data;
 import org.springframework.lang.Nullable;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
 
-/**
- * Base template for an entry of a travel rate. It contains only the necessary fields for the creation.
- */
-@Data
-public class InsertTravelRateRequest {
+public class TravelRate implements Serializable {
     private UUID travelId;
     private String country;
     private String locality;
@@ -20,13 +16,16 @@ public class InsertTravelRateRequest {
     private List<String> accommodations; // todo: this needs to be changed to a list of Accommodation objects
     private List<String> restaurants;   // todo: this needs to be changed to a list of Restaurant objects
 
-    public InsertTravelRateRequest(UUID travelId, String country, String locality, String season, String description, int rate) {
+    public TravelRate(UUID travelId, String country, String locality, String season, String description,
+                      int rate, List<String> accommodations, List<String> restaurants) {
         this.travelId = travelId;
         this.country = country;
         this.locality = locality;
         this.season = season;
         this.description = description;
         this.rate = rate;
+        this.accommodations = accommodations;
+        this.restaurants = restaurants;
     }
 
     public UUID getTravelId() {
@@ -94,4 +93,5 @@ public class InsertTravelRateRequest {
     public void setRestaurants(List<String> restaurants) {
         this.restaurants = restaurants;
     }
+
 }

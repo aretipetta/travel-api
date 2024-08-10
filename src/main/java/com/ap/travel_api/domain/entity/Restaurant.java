@@ -1,17 +1,16 @@
-package com.ap.travel_api.web.request;
+package com.ap.travel_api.domain.entity;
 
-import lombok.Data;
-import org.springframework.lang.Nullable;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 import java.util.List;
 import java.util.UUID;
 
-/**
- * Base template for an entry of a travel rate. It contains only the necessary fields for the creation.
- */
-@Data
-public class InsertTravelRateRequest {
-    private UUID travelId;
+@Entity
+@Table(name = "restaurant")
+public class Restaurant {
+
+    private UUID restaurantId;
     private String country;
     private String locality;
     private String season;
@@ -20,21 +19,25 @@ public class InsertTravelRateRequest {
     private List<String> accommodations; // todo: this needs to be changed to a list of Accommodation objects
     private List<String> restaurants;   // todo: this needs to be changed to a list of Restaurant objects
 
-    public InsertTravelRateRequest(UUID travelId, String country, String locality, String season, String description, int rate) {
-        this.travelId = travelId;
+    public Restaurant() {}
+
+    public Restaurant(UUID travelId, String country, String locality, String season, String description, int rate, List<String> accommodations, List<String> restaurants) {
+        this.restaurantId = travelId;
         this.country = country;
         this.locality = locality;
         this.season = season;
         this.description = description;
         this.rate = rate;
+        this.accommodations = accommodations;
+        this.restaurants = restaurants;
     }
 
-    public UUID getTravelId() {
-        return travelId;
+    public UUID getRestaurantId() {
+        return restaurantId;
     }
 
-    public void setTravelId(UUID travelId) {
-        this.travelId = travelId;
+    public void setRestaurantId(UUID restaurantId) {
+        this.restaurantId = restaurantId;
     }
 
     public String getCountry() {
@@ -77,7 +80,6 @@ public class InsertTravelRateRequest {
         this.rate = rate;
     }
 
-    @Nullable
     public List<String> getAccommodations() {
         return accommodations;
     }
@@ -86,7 +88,6 @@ public class InsertTravelRateRequest {
         this.accommodations = accommodations;
     }
 
-    @Nullable
     public List<String> getRestaurants() {
         return restaurants;
     }

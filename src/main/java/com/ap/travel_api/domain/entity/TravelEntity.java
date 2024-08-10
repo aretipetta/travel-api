@@ -1,16 +1,17 @@
-package com.ap.travel_api.web.request;
+package com.ap.travel_api.domain.entity;
 
-import lombok.Data;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import org.springframework.lang.Nullable;
 
 import java.util.List;
 import java.util.UUID;
 
-/**
- * Base template for an entry of a travel rate. It contains only the necessary fields for the creation.
- */
-@Data
-public class InsertTravelRateRequest {
+@Entity
+@Table(name = "travel_entity")
+public class TravelEntity {
+
     private UUID travelId;
     private String country;
     private String locality;
@@ -20,13 +21,18 @@ public class InsertTravelRateRequest {
     private List<String> accommodations; // todo: this needs to be changed to a list of Accommodation objects
     private List<String> restaurants;   // todo: this needs to be changed to a list of Restaurant objects
 
-    public InsertTravelRateRequest(UUID travelId, String country, String locality, String season, String description, int rate) {
+    public TravelEntity(){}
+
+    public TravelEntity(UUID travelId, String country, String locality, String season, String description,
+                        int rate, List<String> accommodations, List<String> restaurants) {
         this.travelId = travelId;
         this.country = country;
         this.locality = locality;
         this.season = season;
         this.description = description;
         this.rate = rate;
+        this.accommodations = accommodations;
+        this.restaurants = restaurants;
     }
 
     public UUID getTravelId() {
